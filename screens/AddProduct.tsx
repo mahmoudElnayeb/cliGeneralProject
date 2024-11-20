@@ -1,0 +1,86 @@
+/* eslint-disable react-native/no-inline-styles */
+/* eslint-disable react/react-in-jsx-scope */
+import {StyleSheet} from 'react-native';
+import Form from '../components/form/Form';
+import FormInput from '../components/form/FormInput';
+import * as Yup from 'yup';
+import SubmitButton from '../components/form/SubmitButton';
+import customStyle from '../config/styles';
+import FormDropdown from '../components/form/FormDropdown';
+import FormImageInput from '../components/form/FormImageInput';
+import GradientBackground from '../components/general/GradientBackground';
+export default function AddProduct() {
+  const initialValues = {
+    name: '',
+    price: null,
+    category: null,
+    images: [],
+    description: '',
+  };
+
+  const validationSchema = Yup.object().shape({
+    name: Yup.string().required().min(3).label('Product Name'),
+    price: Yup.number().min(0).required().label('Price'),
+    category: Yup.object().nullable().label('Category'),
+    images: Yup.array().min(1, 'Images must be one at least'),
+    description: Yup.string().min(3).label('Product Description'),
+  });
+
+  const categoryOptions = [
+    {
+      id: 1,
+      title: 'Phones',
+      icon: 'account',
+      backgroundColor: customStyle.color.primary,
+      color: customStyle.color.black,
+    },
+    {
+      id: 2,
+      title: 'Clothes',
+      icon: 'account',
+      backgroundColor: customStyle.color.yellow,
+      color: customStyle.color.black,
+    },
+    {
+      id: 3,
+      title: 'furniture',
+      icon: 'account',
+      backgroundColor: customStyle.color.secondary,
+      color: customStyle.color.black,
+    },
+  ];
+
+  return (
+    <GradientBackground style={{paddingHorizontal: 20, paddingTop: 30}}>
+      <Form
+        validationSchema={validationSchema}
+        initialValues={initialValues}
+        onSubmit={value => console.log(value)}>
+        <FormImageInput name="images" />
+        <FormInput name="name" placeholder="product Name" icon="cart-plus" />
+        <FormInput
+          name="price"
+          width={'60%'}
+          icon="wallet"
+          placeholder="Price"
+          keyboardType="numeric"
+        />
+        <FormDropdown
+          name="category"
+          options={categoryOptions}
+          placeholder="Category"
+        />
+        <FormInput
+          name="description"
+          numberOfLines={4}
+          icon="pen"
+          placeholder="Description"
+        />
+
+        <SubmitButton title="Add" type="primary" />
+      </Form>
+    </GradientBackground>
+  );
+}
+
+const styles = StyleSheet.create({});
