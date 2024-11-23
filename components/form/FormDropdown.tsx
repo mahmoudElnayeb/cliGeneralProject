@@ -21,9 +21,6 @@ export default function FormDropdown({
       <Dropdown
         selectedItem={values[name]}
         onSelectItem={item => {
-          console.log('====================================');
-          console.log(item);
-          console.log('====================================');
           setFieldValue(name, item);
           setFieldTouched(name);
         }}

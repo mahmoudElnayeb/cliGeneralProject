@@ -9,6 +9,11 @@ import customStyle from '../config/styles';
 import FormDropdown from '../components/form/FormDropdown';
 import FormImageInput from '../components/form/FormImageInput';
 import GradientBackground from '../components/general/GradientBackground';
+import productApis from "../apis/productsApi";
+import { IProductPayload } from "../modals/product.payload";
+import useApi from '../apis/useApi';
+import { useState } from 'react';
+
 export default function AddProduct() {
   const initialValues = {
     name: '',
@@ -50,12 +55,40 @@ export default function AddProduct() {
     },
   ];
 
+  const [progress, setProgress] = useState(0)
+
+  const {request:addProductFunc , data:ProductsResponse , loading , error } = useApi(productApis.addProduct as any);
+
+
+
+  const addProduct= async (product:any)=>{
+    setProgress(0);
+    const productPayload:any= new FormData();
+    productPayload.append('title' , product.name);
+    productPayload.append('price', product.price);
+    productPayload.append('description', product.description);
+    productPayload.append('categoryId', product.category.id);
+    product.images.forEach((image:string, index:number) =>
+      productPayload.append('images', {
+        name: `image-${index}.${image}`,
+        type: "image/jpeg",
+        uri: image,
+      })
+    );
+    
+  await  addProductFunc(productPayload as IProductPayload , (progress:any)=>{
+      setProgress(progress);
+  });
+  }
+
+
+
   return (
     <GradientBackground style={{paddingHorizontal: 20, paddingTop: 30}}>
       <Form
         validationSchema={validationSchema}
         initialValues={initialValues}
-        onSubmit={value => console.log(value)}>
+        onSubmit={addProduct}>
         <FormImageInput name="images" />
         <FormInput name="name" placeholder="product Name" icon="cart-plus" />
         <FormInput

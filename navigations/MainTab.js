@@ -8,16 +8,15 @@ import TabActionButton from './TabActionButton';
 import colors from '../config/colors';
 import {useNavigation} from '@react-navigation/native';
 import ProductNav from './ProductNav';
-import {PRODUCT_ROUTE} from '../routers/prouductRoute';
+import ProductList from '../screens/ProductList';
 
 const Tab = createBottomTabNavigator();
 
 const MainTabNavigator = () => {
-  const navigation = useNavigation();
 
   return (
     <Tab.Navigator
-      initialRouteName={PRODUCT_ROUTE.TAB}
+      initialRouteName="ProductsTap"
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
@@ -47,14 +46,16 @@ const MainTabNavigator = () => {
       />
       <Tab.Screen
         name="ProductsTap"
-        component={ProductNav}
-        // options={{
-        //   tabBarButton: ({}) => (
-        //     <TabActionButton
-        //       onPress={() => navigation.navigate(PRODUCT_ROUTE.TAB)}
-        //     />
-        //   ),
-        // }}
+        component={ProductList}
+        options={({navigation})=>({
+          tabBarButton: ({}) => (
+            <TabActionButton
+              onPress={() => {
+                navigation.navigate('ProductsTap');
+              }}
+            />
+          ),
+        })}
       />
       <Tab.Screen
         name="complain"

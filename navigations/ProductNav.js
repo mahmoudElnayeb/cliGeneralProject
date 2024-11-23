@@ -6,29 +6,26 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
 
-const ProductNav = () => (
-  <Stack.Navigator 
-    initialRouteName={PRODUCT_ROUTE.LIST}
-    screenOptions={{headerShown: false}}
-  >
-    <Stack.Screen 
-      name={PRODUCT_ROUTE.LIST} 
-      component={ProductList}
-      options={{
-        headerShown: false
-      }}
-    />
-    <Stack.Screen
-      name={PRODUCT_ROUTE.ITEM}
-      component={ProductDetails}
-      options={({route}) => ({
-        headerShown: true,
-        headerTitle: route.params?.item.title,
-        headerTitleAlign: 'center',
-        headerShadowVisible: false,
-      })}
-    />
-  </Stack.Navigator>
-);
+const ProductNav = ({ route }) => {
+  
+  return (
+    <Stack.Navigator 
+      initialRouteName={PRODUCT_ROUTE.ITEM}
+      screenOptions={{headerShown: false}}
+    >
+      <Stack.Screen
+        name={PRODUCT_ROUTE.ITEM}
+        component={ProductDetails}
+        initialParams={ {item:route?.params?.item} }
+        options={({route}) => ({
+          headerShown: true,
+          headerTitle: route.params?.item?.title,
+          headerTitleAlign: 'center',
+          headerShadowVisible: false,
+        })}
+      />
+    </Stack.Navigator>
+  );
+};
 
 export default ProductNav;

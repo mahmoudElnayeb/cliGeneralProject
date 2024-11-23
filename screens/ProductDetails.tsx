@@ -9,14 +9,14 @@ export default function ProductDetails({route, navigation}: any) {
     <GradientBackground style={{paddingHorizontal: 10}}>
       <View style={styles.container}>
         <Image
-          source={{uri: route.params.item.image}}
+          source={{uri: route.params?.item?.images[0].url}}
           style={styles.image}
           resizeMode="cover"
         />
         <View style={styles.infoContainer}>
-          <AppText style={styles.title}>{route.params.item.title}</AppText>
+          <AppText style={styles.title}>{route.params?.item?.title}</AppText>
           <AppText style={styles.subTitle}>
-            {route.params.item.subTitle}
+            {route.params?.item?.price} $
           </AppText>
         </View>
       </View>

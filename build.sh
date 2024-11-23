@@ -10,6 +10,8 @@ rm -rf package-lock.json
 # Remove Android build files and gradlew
 echo "🤖 Cleaning Android build files..."
 cd android
+rm -rf build
+rm -rf .gradle
 ./gradlew clean
 cd ..
 rm -rf android/app/build

@@ -28,7 +28,11 @@ function App(): React.JSX.Element {
               <Stack.Screen name="welcome" component={HomeNav} />
               <Stack.Screen name="addProduct" component={AddProduct} />
               <Stack.Screen name="user" component={UserScreen} />
-              <Stack.Screen name="products" component={ProductNav} />
+              <Stack.Screen 
+                name="products" 
+                component={ProductNav}
+                options={{presentation: 'card' , animation:'slide_from_bottom'}}
+              />
               <Stack.Screen name="auth" component={AuthNav} />
               <Stack.Screen name="main" component={MainTabNavigator} />
             </Stack.Navigator>
