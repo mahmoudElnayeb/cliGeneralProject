@@ -5,6 +5,6 @@ export interface IProductPayload {
         price: number;
         description: string;
         categoryId: string;
-        images: [];
+        images: Array<{url:string}>;
         id?: string;
     }

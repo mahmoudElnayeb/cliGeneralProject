@@ -1,15 +1,20 @@
 import { INotificationConfig } from "./notification";
 
-
-export interface IQualifierPayload<T = any>  {
+export interface IQualifierPayload {
    Method?:"GET" | "POST" | "PUT" | "DELETE",
    endpointurl?: string;
-   body?:T;
+   body?: any;
    catgory?: string;
    serviceUrl?: string;
+   options?: {
+     headers?: Record<string, string>;
+     onUploadProgress?: (progressEvent: any) => void;
+     [key: string]: any;
+   };
    enablePageLoader?: boolean;
    notifyWarning?: boolean;
    notifyError?: INotificationConfig;
    notifySuccess?: INotificationConfig;
-   options?:T
+   useMock?: boolean
+   mockData?: any
 }

@@ -15,7 +15,7 @@ export default function Card({
 }) {
   return (
     <Pressable style={styles.container} onPress={onPress}>
-      <Image source={{uri: image}} style={styles.image} resizeMode="cover" />
+      {image &&<Image source={{uri: image}} style={styles.image} resizeMode="cover" />}
       <View style={styles.infoContainer}>
         <AppText style={styles.title}  numberOfLines={1}>{title}</AppText>
         <AppText style={styles.subTitle}>{subTitle}</AppText>

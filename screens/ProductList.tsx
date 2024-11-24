@@ -8,7 +8,7 @@ import { PRODUCT_ROUTE } from '../routers/prouductRoute';
 import GradientBackground from '../components/general/GradientBackground';
 import ProductNav from '../navigations/ProductNav';
 import useApi from '../apis/useApi';
-import productApis from '../apis/productsApi';
+import productApis from '../services/products/productsApi';
 import AppText from '../components/general/AppText';
 import Button from '../components/general/Button';
 import ActivityIndicator from '../components/general/ActivityIndicator';
@@ -45,7 +45,7 @@ export default function ProductList({ navigation }: any) {
           <Card
             title={item.title}
             subTitle={item.price + "$"}
-            image={item.images[0].url}
+            image={item.images.length>0 && item.images[0].url}
             onPress={() => navigation.navigate("products", { item })}
           />
         )}

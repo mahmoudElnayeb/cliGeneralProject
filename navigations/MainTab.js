@@ -6,50 +6,60 @@ import ComplaintScreen from '../screens/ComplaintScreen';
 import Icon from '../components/general/Icon';
 import TabActionButton from './TabActionButton';
 import colors from '../config/colors';
-
 import ProductList from '../screens/ProductList';
 
 const Tab = createBottomTabNavigator();
 
 const MainTabNavigator = () => {
+
   return (
     <Tab.Navigator
-      initialRouteName="Products"
+      initialRouteName="ProductsTap"
       screenOptions={{
         headerShown: false,
-        tabBarShowLabel: false,
         tabBarStyle: {
-          position: 'absolute',
-          bottom: 25,
-          left: 20,
-          right: 20,
-          elevation: 0,
           backgroundColor: colors.white,
-          borderRadius: 15,
-          height: 90,
+          height: 80,
+        },
+        tabBarLabelStyle: {
+          fontSize: 15,
+          alignSelf: 'center',
+          marginTop: 6,
+          fontWeight: 700,
+        },
+        tabBarItemStyle: {
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginTop: 10,
         },
       }}>
       <Tab.Screen
-        name="Settings"
+        name="setting"
         component={UserScreen}
         options={{
-          tabBarIcon: ({ color }) => (
+          tabBarIcon: ({size, color}) => (
             <Icon icon="account" color={color} size={60} />
           ),
         }}
       />
       <Tab.Screen
-        name="Products"
+        name="ProductsTap"
         component={ProductList}
-        options={{
-          tabBarButton: props => <TabActionButton {...props} />,
-        }}
+        options={({navigation})=>({
+          tabBarButton: ({}) => (
+            <TabActionButton
+              onPress={() => {
+                navigation.navigate('ProductsTap');
+              }}
+            />
+          ),
+        })}
       />
       <Tab.Screen
-        name="Complaints"
+        name="complain"
         component={ComplaintScreen}
         options={{
-          tabBarIcon: ({ color }) => (
+          tabBarIcon: ({size, color}) => (
             <Icon icon="comment-alert-outline" color={color} size={60} />
           ),
         }}

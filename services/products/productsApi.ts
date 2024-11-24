@@ -1,20 +1,21 @@
-import client from './client';
-import { IProductPayload } from "../modals/product.payload";
-import { call } from '../services/apiServices.service';
+import client from '../../apis/client';
+import { IProductPayload } from "../../modals/product.payload";
+import { call } from '../apiServices';
+import { getMockResponse } from '../mockService';
 
 
 
 const endpoint = '/listings';
-
-const allProductsApi = () => call({ 
+const allProductsApi = () => 
+  call({ 
    Method: "GET",
-   endpointurl: "/listings",
-   
-  });
+   endpointurl: endpoint,
+   useMock: true
+  })
 
 const addProduct = (product: IProductPayload ) => call({ 
    Method: "POST",
-   endpointurl: "/listings",
+   endpointurl:endpoint,
    body: product,
    options: {
     headers: {

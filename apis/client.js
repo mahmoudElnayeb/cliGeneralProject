@@ -1,8 +1,12 @@
 import { create } from 'apisauce';
+import { getConfig } from '../environment';
+import { getMockResponse } from '../services/mockService';
 
 const createClient = (URL) => {
+  const config = getConfig();
   const client = create({
-    baseURL: URL || 'http://192.168.1.106:9000/api',
+    baseURL: URL || config.apiUrl,
+    timeout: config.timeout,
   });
 
   // Monitor all requests
@@ -12,7 +16,7 @@ const createClient = (URL) => {
       method: response.config.method,
       data: response.config.data,
       status: response.status,
-      serviceUrl:response.config.serviceUrl,
+      serviceUrl: response.config.serviceUrl,
       response: response
     });
   });
@@ -24,10 +28,22 @@ const createClient = (URL) => {
       method: request.method,
       data: request.data,
       headers: request.headers,
-      serviceUrl:client.getBaseURL(),
-      response: request.response
-
+      serviceUrl: client.getBaseURL(),
     });
+  });
+
+  // Add response transform to handle mocks
+  client.addResponseTransform(response => {
+    if (config.enableMock && !response.ok) {
+      const mockResponse = getMockResponse(
+        response.config.url,
+        response.config.method,
+        response.config.data
+      );
+      if (mockResponse) {
+        Object.assign(response, mockResponse);
+      }
+    }
   });
 
   return client;

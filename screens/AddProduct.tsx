@@ -9,7 +9,7 @@ import customStyle from '../config/styles';
 import FormDropdown from '../components/form/FormDropdown';
 import FormImageInput from '../components/form/FormImageInput';
 import GradientBackground from '../components/general/GradientBackground';
-import productApis from "../apis/productsApi";
+import productApis from "../services/products/productsApi";
 import { IProductPayload } from "../modals/product.payload";
 import useApi from '../apis/useApi';
 import { useState } from 'react';
@@ -76,11 +76,12 @@ export default function AddProduct() {
       })
     );
     
-  await  addProductFunc(productPayload as IProductPayload , (progress:any)=>{
+     await  addProductFunc(productPayload as IProductPayload , (progress:any)=>{
       setProgress(progress);
   });
   }
 
+console.log("response------>",ProductsResponse);
 
 
   return (
