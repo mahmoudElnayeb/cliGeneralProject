@@ -7,6 +7,6 @@ import App from './App';
 import {name as appName} from './app.json';
 
 
-global.useMock = true;
+global.useMock = false;
 
 AppRegistry.registerComponent(appName, () => App);

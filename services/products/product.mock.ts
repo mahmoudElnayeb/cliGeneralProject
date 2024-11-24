@@ -1,6 +1,5 @@
 import { IProductPayload } from "../../modals/product.payload";
 
-
 const mockProducts: IProductPayload[] = [
     {
       id: '1',
@@ -23,7 +22,11 @@ const mockProducts: IProductPayload[] = [
    export  const productMockResponses: Record<string, any> = {
     '/listings': {
       GET: () => ({ ok: true, data: mockProducts }),
-      POST: () => ({ ok: true, data: { id: '000' ,titile: 'test mock' } }),
+      POST: (body: any) => {
+        console.log('Received POST data:', body);
+        return { ok: true, data: { ...body, id: Date.now().toString() } };
+       
+      },
     },
     // Add more endpoint mocks as needed
   };
