@@ -8,40 +8,22 @@ export default useApi = (apiFunc) => {
 
   const request = async (...args) => {
     setLoading(true);
-    setError(false);
     setErrorMessage("");
+    const response = await apiFunc(...args);
+    setLoading(false);
 
-    try {
-      const response = await apiFunc(...args);
-      setLoading(false);
-
-      if (!response.ok) {
-        setError(true);
-        setErrorMessage(response.data?.error || 'An error occurred');
-        console.log('API Error:', {
-          status: response.status,
-          data: response.data,
-          problem: response.problem
-        });
-        return false;
-      }
-
-      setData(response.data);
-      return true;
-    } catch (error) {
-      console.log('API Exception:', error);
-      setError(true);
-      setErrorMessage(error.message);
-      setLoading(false);
-      return false;
+    if (!response.ok) {
+      setErrorMessage(response.data?.error || 'An error occurred');
+      return setError(true);
     }
-  };
+    setError(false);
+    return setData(response.data);  };
 
-  return { 
-    data, 
-    error, 
-    loading, 
+  return {
     request,
-    errorMessage 
+    data,
+    loading,
+    error,
+    errorMessage
   };
 };

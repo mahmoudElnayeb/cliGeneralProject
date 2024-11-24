@@ -11,11 +11,12 @@ import useApi from '../apis/useApi';
 import productApis from '../apis/productsApi';
 import AppText from '../components/general/AppText';
 import Button from '../components/general/Button';
-export default function ProductList({ navigation }: any) {
+import ActivityIndicator from '../components/general/ActivityIndicator';
+export default function ProductList({ navigation }: any) {  
   const [refresing, setRefresh] = useState(false);
 
 
-  const { request: getProducts, data: productList, loading, error }: any = useApi(productApis.allProductsApi as any);
+  const { request: getProducts, data: productList, loading, error }: any = useApi(productApis.allProductsApi);  
 
   useEffect(() => { getProducts() }, []);
 
@@ -29,12 +30,14 @@ export default function ProductList({ navigation }: any) {
             We Have Issue in server currently
           </AppText>
           <Button
-            type="secondary"
+            type="primary"
             title="refetch"
             onPress={() => getProducts()}
           />
         </View>
       )}
+
+      <ActivityIndicator visible={loading} />
 
       <FlatList
         data={productList}

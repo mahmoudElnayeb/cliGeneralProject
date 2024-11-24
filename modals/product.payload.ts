@@ -6,4 +6,5 @@ export interface IProductPayload {
         description: string;
         categoryId: string;
         images: [];
+        id?: string;
     }
