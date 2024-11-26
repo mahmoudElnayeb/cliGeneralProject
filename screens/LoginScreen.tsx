@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
   },
   formContainer: {
     marginTop: 50,
-    marginHorizontal: 20,
+    paddingHorizontal: 20,
+    width:"100%"
   },
 });

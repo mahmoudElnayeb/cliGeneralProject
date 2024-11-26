@@ -17,6 +17,7 @@ export default function GradientBackground({children, style}: any) {
 const styles = StyleSheet.create({
   gradientContainer: {
     flex: 1, // Fill the whole screen
+    
   },
   blurView: {
     // flex: 1,
