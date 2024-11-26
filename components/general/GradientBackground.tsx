@@ -1,27 +1,36 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import Screen from './Screen';
 
-export default function GradientBackground({children, style}: any) {
+export default function GradientBackground({ children, style }: any) {
   return (
-    <LinearGradient
-      colors={['#4c669f', '#3b5998', '#192f5d', '#9b4d96']}
-      start={{x: 0, y: 2}}
-      end={{x: 2, y: 1}}
-      style={[styles.gradientContainer, style]}>
-      {children}
-    </LinearGradient>
+    <View style={styles.container}>
+      <LinearGradient
+        colors={['#4c669f', '#3b5998', '#192f5d', '#9b4d96']}
+        start={{ x: 0, y: 2 }}
+        end={{ x: 2, y: 1 }}
+        style={[styles.gradientContainer]}>
+        <Screen style={[styles.content, style]}>
+          {children}
+        </Screen>
+      </LinearGradient>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  gradientContainer: {
-    flex: 1, // Fill the whole screen
+  container: {
+    flex: 1,
+    width: '100%',
+    backgroundColor: 'transparent',
   },
-  blurView: {
-    // flex: 1,
+  gradientContainer: {
+    flex: 1,
+    width: '100%',
   },
   content: {
-    backgroundColor: 'transparent', // Transparent background for children content,
+    flex: 1,
+    backgroundColor: 'transparent',
   },
 });

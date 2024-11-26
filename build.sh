@@ -41,8 +41,18 @@ cd android
 ./gradlew assembleDebug
 cd ..
 
+# Build iOS
+echo "🍎 Building iOS..."
+cd ios
+xcodebuild -workspace general.xcworkspace -scheme general -configuration Debug -sdk iphonesimulator -derivedDataPath build
+cd ..
+
 # Run Android
 echo "🤖 Running Android..."
- npx react-native start --reset-cache
- 
+npx react-native start --reset-cache
+
+# Run iOS Simulator
+echo "🍎 Running iOS Simulator..."
+# npx react-native run-ios --simulator="iPhone 14"
+
 echo "✅ Cleanup and rebuild process completed!"

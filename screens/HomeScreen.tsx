@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
   actionsContainer: {
     paddingHorizontal: 20,
     marginBlock: 20,
+    width:"100%"
   },
   logoContainer: {
     alignItems: 'center',

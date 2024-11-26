@@ -30,6 +30,7 @@ export default {
     borderWidth: 1,
     backgroundColor: colors.light,
     height: 60,
+    with:"100%",
     alignItems: 'center',
     flexDirection: 'row',
   },

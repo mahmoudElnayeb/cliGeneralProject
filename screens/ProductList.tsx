@@ -64,7 +64,9 @@ export default function ProductList({ navigation }: any) {
 }
 
 const styles = StyleSheet.create({
-  container: { paddingVertical: 20, paddingHorizontal: 20 },
+  container: { 
+    paddingVertical: 20,
+     paddingHorizontal: 20 },
   account: {
     marginBottom: 20,
     alignItems: 'flex-end',
