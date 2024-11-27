@@ -22,8 +22,16 @@ const mockProducts: IProductPayload[] = [
 
    export  const productMockResponses: Record<string, any> = {
     '/listings': {
-      GET: () => ({ ok: true, data: mockProducts }),
-      POST: () => ({ ok: true, data: { id: '000' ,titile: 'test mock' } }),
+      GET: () => new Promise((resolve) => {
+        setTimeout(() => {
+          resolve({ ok: true, data: mockProducts });
+        }, 9000);
+      }),
+      POST: () => new Promise((resolve) => {
+        setTimeout(() => {
+          resolve({ ok: true, data: { id: '000' ,title: 'test mock' } });
+        }, 1000);
+      }),
     },
     // Add more endpoint mocks as needed
   };

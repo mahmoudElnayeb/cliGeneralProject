@@ -3,6 +3,7 @@ import React, { useRef, useEffect } from 'react'
 import LottieView from 'lottie-react-native';
 
 export default function ActivityIndicator({visible = false}) {
+  
   const animation = useRef<LottieView>(null);
 
   useEffect(() => {
@@ -33,7 +34,8 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'center',
-    flex: 1
+    flex: 1, 
+
   },
   animation: {
     width: 200,

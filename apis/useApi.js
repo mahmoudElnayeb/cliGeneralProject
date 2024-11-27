@@ -8,6 +8,7 @@ export default useApi = (apiFunc) => {
 
   const request = async (...args) => {
     setLoading(true);
+    setData([])
     setErrorMessage("");
    const response = await apiFunc(...args);
     setLoading(false);
@@ -24,6 +25,8 @@ export default useApi = (apiFunc) => {
     data,
     loading,
     error,
-    errorMessage
+    errorMessage, 
+    setData,
+    setLoading 
   };
 };
