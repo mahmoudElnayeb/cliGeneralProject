@@ -11,11 +11,11 @@ export default function ProductDetails({route, navigation}: any) {
     <Button
     type="default"
     onPress={()=>console.log("xxxx")}
-    icon='backspace-outline'
+    icon='close'
     style={{ width: 50, height: 50 , justifyContent:'center',
       alignItems:'center' }} 
     title={""} 
-    iconSize={25}
+    iconSize={50}
     />
   )
 )

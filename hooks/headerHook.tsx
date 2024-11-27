@@ -32,10 +32,10 @@ import { useNavigation, useRoute } from "@react-navigation/native";
            <Button
              type="default"
              onPress={() => onBackPress || navigation.goBack()}
-             icon='backspace-outline'
+             icon='arrow-left'
              style={{ width: 50, height: 50 }} 
              title={""} 
-             iconSize={25}
+             iconSize={50}
              />
          ),
          headerRight: () => headerRightFunc?.()||null
