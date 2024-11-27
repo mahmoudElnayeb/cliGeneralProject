@@ -1,6 +1,5 @@
 import { IProductPayload } from "../../modals/product.payload";
 
-
 const mockProducts: IProductPayload[] = [
     {
       id: '1',

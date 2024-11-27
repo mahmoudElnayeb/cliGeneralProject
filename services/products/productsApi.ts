@@ -22,7 +22,8 @@ const addProduct = (product: IProductPayload ) => call({
       'Content-Type': 'multipart/form-data',
     },
     onUploadProgress: (progress:any) => console.log(progress),
-  }
+  },
+  useMock:true
   
   });
 
