@@ -1708,6 +1708,27 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
+  - RNVectorIcons (10.2.0):
+    - DoubleConversion
+    - glog
+    - hermes-engine
+    - RCT-Folly (= 2024.01.01.00)
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - Yoga
   - SocketRocket (0.7.1)
   - Yoga (0.0.0)
 
@@ -1783,6 +1804,7 @@ DEPENDENCIES:
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNScreens (from `../node_modules/react-native-screens`)
+  - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -1930,6 +1952,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-permissions"
   RNScreens:
     :path: "../node_modules/react-native-screens"
+  RNVectorIcons:
+    :path: "../node_modules/react-native-vector-icons"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -2004,9 +2028,10 @@ SPEC CHECKSUMS:
   RNGestureHandler: 0e5ae8d72ef4afb855e98dcdbe60f27d938abe13
   RNPermissions: 00c1cfbdcbda40c167021a47aeed31fd3fe8195a
   RNScreens: 44a3e358d5ccd7815c5ae9148988c562826992b2
+  RNVectorIcons: 07792a9538e8577c1263fcad187712e90d65d8fb
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
   Yoga: db69236006b8b1c6d55ab453390c882306cbf219
 
-PODFILE CHECKSUM: 9d769e95081716e7b7a429ccfbd0aaff0555450f
+PODFILE CHECKSUM: a32d236ea1b81a38dc80e17145773dc84aa97cef
 
 COCOAPODS: 1.16.2

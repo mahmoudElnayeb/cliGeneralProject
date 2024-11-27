@@ -3,6 +3,7 @@ import ProductList from '../screens/ProductList';
 import ProductDetails from '../screens/ProductDetails';
 import {PRODUCT_ROUTE} from '../routers/prouductRoute';
 import {createStackNavigator} from '@react-navigation/stack';
+import Button from '../components/general/Button';
 
 const Stack = createStackNavigator();
 
@@ -17,12 +18,6 @@ const ProductNav = ({ route }) => {
         name={PRODUCT_ROUTE.ITEM}
         component={ProductDetails}
         initialParams={ {item:route?.params?.item} }
-        options={({route}) => ({
-          headerShown: true,
-          headerTitle: route.params?.item?.title,
-          headerTitleAlign: 'center',
-          headerShadowVisible: false,
-        })}
       />
     </Stack.Navigator>
   );

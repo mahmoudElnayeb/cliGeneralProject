@@ -4,32 +4,54 @@ import { FlatList, Platform, StyleSheet, View } from 'react-native';
 import { useEffect, useState } from 'react';
 import Card from '../components/general/Card';
 import Seperator from '../components/general/Seperator';
-import { PRODUCT_ROUTE } from '../routers/prouductRoute';
 import GradientBackground from '../components/general/GradientBackground';
-import ProductNav from '../navigations/ProductNav';
 import useApi from '../apis/useApi';
 import productApis from '../services/products/productsApi';
 import AppText from '../components/general/AppText';
 import Button from '../components/general/Button';
 import ActivityIndicator from '../components/general/ActivityIndicator';
-import defaultStyle from '../config/styles'
-
-
 
 export default function ProductList({ navigation }: any) {
-  const [refresing, setRefresh] = useState(false);
+  // const [refresing, setRefresh] = useState(false);
 
-
-  const { request: getProducts, data: productList, loading, error }: any = useApi(productApis.allProductsApi);
+  const { request: getProducts, data: productListData = [],
+    loading,
+    error,
+    errorMessage,
+    setData,
+    setLoading
+  }: any = useApi(productApis.allProductsApi);
 
   useEffect(() => { getProducts() }, []);
+
+const renderData=()=>{
+  if(!error)
+  return <FlatList
+  data={productListData}
+  renderItem={({ item }) => (
+    <Card
+      title={item.title}
+      subTitle={item.price + "$"}
+      image={item.images.length > 0 && item.images[0].url}
+      onPress={() => navigation.navigate("products", { item })}
+    />
+  )}
+  keyExtractor={item => item.id.toString()}
+  ItemSeparatorComponent={Seperator}
+  showsVerticalScrollIndicator={false}
+  refreshing={loading}
+  onRefresh={() => {
+    getProducts();
+  }}
+/>
+}
 
 
   return (
     <GradientBackground style={styles.container}>
-
-      {error && (
-        <View style={{ alignItems: "center" }}>
+      {(error && !loading) && (
+        <View style={{ alignItems: "center" 
+        , justifyContent:'center' , flex:1 }}>
           <AppText styles={{ margin: 20 }}>
             We Have Issue in server currently
           </AppText>
@@ -41,39 +63,19 @@ export default function ProductList({ navigation }: any) {
         </View>
       )}
 
-      <ActivityIndicator visible={loading} />
-
-      <FlatList
-        data={productList}
-        renderItem={({ item }) => (
-          <Card
-            title={item.title}
-            subTitle={item.price + "$"}
-            image={item.images.length > 0 && item.images[0].url}
-            onPress={() => navigation.navigate("products", { item })}
-          />
-        )}
-        keyExtractor={item => item.id.toString()}
-        ItemSeparatorComponent={Seperator}
-        showsVerticalScrollIndicator={false}
-        refreshing={refresing}
-        onRefresh={() => {
-          setRefresh(true);
-          getProducts();
-          setRefresh(false);
-        }}
-      />
+      {loading ? (
+        <ActivityIndicator visible={true} />
+      ) : (
+         renderData()
+      )}
     </GradientBackground>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     paddingVertical: 20,
-    ...defaultStyle.cardPadding
-  },
-  account: {
-    marginBottom: 20,
-    alignItems: 'flex-end',
+    paddingHorizontal: 20
   },
 });

@@ -68,7 +68,7 @@ export default function AddProduct() {
     productPayload.append('title' , product.name);
     productPayload.append('price', product.price);
     productPayload.append('description', product.description);
-    productPayload.append('categoryId', product.category.id);
+    productPayload.append('categoryId', product.category?.id);
     product.images.forEach((image:string, index:number) =>
       productPayload.append('images', {
         name: `image-${index}.${image}`,

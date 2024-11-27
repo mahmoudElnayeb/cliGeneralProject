@@ -3,16 +3,24 @@ import {Pressable, StyleSheet} from 'react-native';
 import defaultStyle from '../../config/styles';
 import AppText from './AppText';
 import {useState} from 'react';
+import Icon from './Icon';
+import colors from '../../config/colors';
 export default function Button({
   type = 'secondary',
   title,
   disabled,
   onPress,
+  iconSize,
+  icon,
+  style
 }: {
   type?: 'primary' | 'default' | 'secondary';
   title: string;
   disabled?: boolean;
   onPress: () => any;
+  icon?:any
+  iconSize?:number
+  style?:any
 }) {
   const [isHovered, setIsHovered] = useState(true); // Track hover state
 
@@ -31,8 +39,10 @@ export default function Button({
             ? defaultStyle.button[type].overlay
             : defaultStyle.button[type].background,
         },
+       style
       ]}>
-      <AppText style={styles.text}> {title}</AppText>
+        {icon && <Icon icon={icon} size={iconSize} color={colors.dark} />}
+      {title && <AppText style={styles.text}> {title}</AppText>}
     </Pressable>
   );
 }
@@ -40,6 +50,9 @@ export default function Button({
 const styles = StyleSheet.create({
   container: {
     ...defaultStyle.buttonContainer,
+    flexDirection: 'row',
+     justifyContent:'center', 
+     alignItems:'center'
   } as any,
   text: {
     ...defaultStyle.text,
