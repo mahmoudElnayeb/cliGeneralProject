@@ -1,12 +1,12 @@
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable react/react-in-jsx-scope */
-import {Image, StyleSheet, View} from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 import Screen from '../components/general/Screen';
 import Form from '../components/form/Form';
 import * as Yup from 'yup';
 import FormInput from '../components/form/FormInput';
 import SubmitButton from '../components/form/SubmitButton';
-export default function LoginScreen({navigation}: any) {
+export default function LoginScreen({ navigation }: any) {
   const initialValues = {
     email: '',
     password: '',
@@ -51,8 +51,8 @@ export default function LoginScreen({navigation}: any) {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 200,
     alignItems: 'center',
+    paddingTop: 50
   },
   logo: {
     width: 100,
@@ -61,6 +61,6 @@ const styles = StyleSheet.create({
   formContainer: {
     marginTop: 50,
     paddingHorizontal: 20,
-    width:"100%"
+    width: "100%"
   },
 });

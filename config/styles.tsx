@@ -34,4 +34,9 @@ export default {
     alignItems: 'center',
     flexDirection: 'row',
   },
+  cardPadding:{
+    paddingHorizontal: Platform.OS === 'android' ? 10 : 20
+   }
+  
+  
 };

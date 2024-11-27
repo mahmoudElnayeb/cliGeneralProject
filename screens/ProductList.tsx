@@ -1,6 +1,6 @@
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable react-native/no-inline-styles */
-import { FlatList, StyleSheet, View } from 'react-native';
+import { FlatList, Platform, StyleSheet, View } from 'react-native';
 import { useEffect, useState } from 'react';
 import Card from '../components/general/Card';
 import Seperator from '../components/general/Seperator';
@@ -12,11 +12,15 @@ import productApis from '../services/products/productsApi';
 import AppText from '../components/general/AppText';
 import Button from '../components/general/Button';
 import ActivityIndicator from '../components/general/ActivityIndicator';
-export default function ProductList({ navigation }: any) {  
+import defaultStyle from '../config/styles'
+
+
+
+export default function ProductList({ navigation }: any) {
   const [refresing, setRefresh] = useState(false);
 
 
-  const { request: getProducts, data: productList, loading, error }: any = useApi(productApis.allProductsApi);  
+  const { request: getProducts, data: productList, loading, error }: any = useApi(productApis.allProductsApi);
 
   useEffect(() => { getProducts() }, []);
 
@@ -45,7 +49,7 @@ export default function ProductList({ navigation }: any) {
           <Card
             title={item.title}
             subTitle={item.price + "$"}
-            image={item.images.length>0 && item.images[0].url}
+            image={item.images.length > 0 && item.images[0].url}
             onPress={() => navigation.navigate("products", { item })}
           />
         )}
@@ -64,9 +68,10 @@ export default function ProductList({ navigation }: any) {
 }
 
 const styles = StyleSheet.create({
-  container: { 
+  container: {
     paddingVertical: 20,
-     paddingHorizontal: 20 },
+    ...defaultStyle.cardPadding
+  },
   account: {
     marginBottom: 20,
     alignItems: 'flex-end',

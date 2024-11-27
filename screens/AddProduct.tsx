@@ -13,6 +13,7 @@ import productApis from "../services/products/productsApi";
 import { IProductPayload } from "../modals/product.payload";
 import useApi from '../apis/useApi';
 import { useState } from 'react';
+import defaultStyle from '../config/styles'
 
 export default function AddProduct() {
   const initialValues = {
@@ -85,7 +86,8 @@ console.log("response------>",ProductsResponse);
 
 
   return (
-    <GradientBackground style={{paddingHorizontal: 20, paddingTop: 30}}>
+    <GradientBackground style={{...defaultStyle.cardPadding
+      , paddingTop: 30}}>
       <Form
         validationSchema={validationSchema}
         initialValues={initialValues}

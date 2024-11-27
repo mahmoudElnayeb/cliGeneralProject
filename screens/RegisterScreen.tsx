@@ -53,7 +53,7 @@ export default function RegisterScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 200,
+    paddingTop: 50,
     alignItems: 'center',
   },
   logo: {
