@@ -1,32 +1,58 @@
-import { useState } from "react";
+import {  useReducer } from "react";
 
+const reducer = (state, actions) => {
+  switch (actions.type) {
+    case "SET_DATA":
+      return { ...state, data: actions.data };
+    case "SET_ERROR":
+      return { ...state, error: actions.error };
+    case "SET_LOADING":
+      return { ...state, loading: actions.loading };
+    case "SET_ERROR_MESSAGE":
+      return { ...state, errorMessage: actions.errorMessage };
+    default:
+      return state;
+  }
+}
 export default useApi = (apiFunc) => {
-  const [data, setData] = useState([]);
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+
+  const [state, dispatch] = useReducer(reducer,
+    {
+      data: [],
+      error: false,
+      loading: false,
+      errorMessage: ""
+    }
+  )
 
   const request = async (...args) => {
-    setLoading(true);
-    setData([])
-    setErrorMessage("");
-   const response = await apiFunc(...args);
-    setLoading(false);
+    dispatch({ type: "SET_LOADING", loading: true })
+    dispatch({ type: 'SET_DATA', data: [] })
+    dispatch({ type: 'SET_ERROR_MESSAGE', errorMessage: "" })
+
+
+    const response = await apiFunc(...args);
+    dispatch({ type: "SET_LOADING", loading: false })
 
     if (!response.ok) {
-      setErrorMessage(response.data?.error || 'An error occurred');
-      return setError(true);
+      dispatch({ type: 'SET_ERROR_MESSAGE', errorMessage: response.data?.error || 'An error occurred' })
+      return dispatch({ type: 'SET_ERROR', error: true });
     }
-    setError(false);
-    return setData(response.data);  };
+    dispatch({ type: 'SET_ERROR', error: false });
+    return dispatch({ type: 'SET_DATA', data: response.data });
+  };
 
   return {
     request,
-    data,
-    loading,
-    error,
-    errorMessage, 
-    setData,
-    setLoading 
-  };
+    data: state.data,
+    loading: state.loading,
+    error: state.error,
+    errorMessage: state.errorMessage,
+    setData: (newData) => {
+      dispatch({ type: 'SET_DATA', data: newData })
+    },
+    setLoading: (isLoading) => {
+      dispatch({ type: 'SET_LOADING', loading: isLoading })
+    }
+  }
 };
