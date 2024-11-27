@@ -4,6 +4,11 @@
 lsof -ti:8081 | xargs kill -9 2>/dev/null
 
 # Start Metro bundler in the background
+cd ios
+pod install 
+cd ../
+
+
 npx react-native start --reset-cache &
 
 # Wait a few seconds for Metro to initialize
