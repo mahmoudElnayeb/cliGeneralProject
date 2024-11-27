@@ -4,9 +4,24 @@ import customStyle from '../config/styles';
 import AppText from '../components/general/AppText';
 import Button from '../components/general/Button';
 import GradientBackground from '../components/general/GradientBackground';
+import useHeader from '../hooks/headerHook';
 export default function ProductDetails({route, navigation}: any) {
+  useHeader({headerRightFunc:()=>( (
+           
+    <Button
+    type="default"
+    onPress={()=>console.log("xxxx")}
+    icon='backspace-outline'
+    style={{ width: 50, height: 50 , justifyContent:'center',
+      alignItems:'center' }} 
+    title={""} 
+    iconSize={25}
+    />
+  )
+)
+  });
   return (
-    <GradientBackground style={{paddingHorizontal: 10}}>
+    <GradientBackground style={{paddingHorizontal: 10 , paddingTop: 100, }}>
       <View style={styles.container}>
         <Image
           source={{uri: route.params?.item?.images[0].url}}

@@ -3,16 +3,23 @@ import {Pressable, StyleSheet} from 'react-native';
 import defaultStyle from '../../config/styles';
 import AppText from './AppText';
 import {useState} from 'react';
+import Icon from './Icon';
 export default function Button({
   type = 'secondary',
   title,
   disabled,
   onPress,
+  iconSize,
+  icon,
+  style
 }: {
   type?: 'primary' | 'default' | 'secondary';
   title: string;
   disabled?: boolean;
   onPress: () => any;
+  icon?:any
+  iconSize?:number
+  style?:any
 }) {
   const [isHovered, setIsHovered] = useState(true); // Track hover state
 
@@ -31,7 +38,9 @@ export default function Button({
             ? defaultStyle.button[type].overlay
             : defaultStyle.button[type].background,
         },
+       style
       ]}>
+        {icon && <Icon icon={icon} size={iconSize} />}
       <AppText style={styles.text}> {title}</AppText>
     </Pressable>
   );
