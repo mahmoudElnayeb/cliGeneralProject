@@ -24,10 +24,34 @@ export default function ProductList({ navigation }: any) {
 
   useEffect(() => { getProducts() }, []);
 
+const renderData=()=>{
+  if(!error)
+  return <FlatList
+  data={productListData}
+  renderItem={({ item }) => (
+    <Card
+      title={item.title}
+      subTitle={item.price + "$"}
+      image={item.images.length > 0 && item.images[0].url}
+      onPress={() => navigation.navigate("products", { item })}
+    />
+  )}
+  keyExtractor={item => item.id.toString()}
+  ItemSeparatorComponent={Seperator}
+  showsVerticalScrollIndicator={false}
+  refreshing={loading}
+  onRefresh={() => {
+    getProducts();
+  }}
+/>
+}
+
+
   return (
     <GradientBackground style={styles.container}>
-      {error && (
-        <View style={{ alignItems: "center" }}>
+      {(error && !loading) && (
+        <View style={{ alignItems: "center" 
+        , justifyContent:'center' , flex:1 }}>
           <AppText styles={{ margin: 20 }}>
             We Have Issue in server currently
           </AppText>
@@ -42,24 +66,7 @@ export default function ProductList({ navigation }: any) {
       {loading ? (
         <ActivityIndicator visible={true} />
       ) : (
-        <FlatList
-          data={productListData}
-          renderItem={({ item }) => (
-            <Card
-              title={item.title}
-              subTitle={item.price + "$"}
-              image={item.images.length > 0 && item.images[0].url}
-              onPress={() => navigation.navigate("products", { item })}
-            />
-          )}
-          keyExtractor={item => item.id.toString()}
-          ItemSeparatorComponent={Seperator}
-          showsVerticalScrollIndicator={false}
-          refreshing={loading}
-          onRefresh={() => {
-            getProducts();
-          }}
-        />
+         renderData()
       )}
     </GradientBackground>
   );

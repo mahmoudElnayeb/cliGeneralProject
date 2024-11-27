@@ -2,7 +2,6 @@ import { ReactNode, useLayoutEffect } from "react";
 import Button from '../components/general/Button';
 import { useNavigation, useRoute } from "@react-navigation/native";
 
-
  interface CustomHeaderOptions {
   headerLeftFunc?: () => ReactNode;
   headerRightFunc?: () => ReactNode;
@@ -28,6 +27,14 @@ import { useNavigation, useRoute } from "@react-navigation/native";
           headerShadowVisible: false,
           headerTransparent: true,
           headerBackTitle:'',
+          headerStyle: {
+          },
+          headerLeftContainerStyle: {
+           paddingLeft: 10
+          },
+          headerRightContainerStyle: {
+           paddingRight: 10
+          },
          headerLeft: () => headerLeftFunc?.() || (
            <Button
              type="default"
