@@ -14,8 +14,10 @@ import { IProductPayload } from "../modals/product.payload";
 import useApi from '../apis/useApi';
 import { useState } from 'react';
 import defaultStyle from '../config/styles'
+import useHeader from '../hooks/headerHook';
 
 export default function AddProduct() {
+   useHeader()
   const initialValues = {
     name: '',
     price: null,
@@ -87,7 +89,7 @@ console.log("response------>",ProductsResponse);
 
   return (
     <GradientBackground style={{...defaultStyle.cardPadding
-      , paddingTop: 30}}>
+      , paddingTop: 30}} hasHeader>
       <Form
         validationSchema={validationSchema}
         initialValues={initialValues}

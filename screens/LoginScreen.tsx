@@ -51,7 +51,7 @@ export default function LoginScreen({ navigation }: any) {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
+    alignItems:'center',
     paddingTop: 50
   },
   logo: {

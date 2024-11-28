@@ -21,7 +21,7 @@ export default function ProductDetails({route, navigation}: any) {
 )
   });
   return (
-    <GradientBackground style={{paddingHorizontal: 10 , paddingTop: 100, }}>
+    <GradientBackground style={{paddingHorizontal: 10  }} hasHeader>
       <View style={styles.container}>
         <Image
           source={{uri: route.params?.item?.images[0].url}}

@@ -3,9 +3,9 @@ import { SafeAreaView, StyleSheet, View } from 'react-native';
 import React from 'react';
 import defaultStyle from '../../config/styles';
 
-export default function Screen({ children, style }: any) {
+export default function Screen({ children, style , hasHeader }: any) {
   return (
-    <View style={[styles.container, style]}>
+    <View style={[styles.container, style ,{paddingTop: hasHeader ? 130 : 0}]}>
       <SafeAreaView style={[styles.container, style]}>
         {children}
       </SafeAreaView>

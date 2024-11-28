@@ -10,10 +10,10 @@ import productApis from '../services/products/productsApi';
 import AppText from '../components/general/AppText';
 import Button from '../components/general/Button';
 import ActivityIndicator from '../components/general/ActivityIndicator';
+import useHeader from '../hooks/headerHook';
 
 export default function ProductList({ navigation }: any) {
-  // const [refresing, setRefresh] = useState(false);
-
+  
   const { request: getProducts, data: productListData = [],
     loading,
     error,
@@ -48,7 +48,7 @@ const renderData=()=>{
 
 
   return (
-    <GradientBackground style={styles.container}>
+    <GradientBackground style={styles.container} hasHeader>
       {(error && !loading) && (
         <View style={{ alignItems: "center" 
         , justifyContent:'center' , flex:1 }}>

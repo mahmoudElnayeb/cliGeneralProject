@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Screen from './Screen';
 
-export default function GradientBackground({ children, style }: any) {
+export default function GradientBackground({ children, style , hasHeader}: any) {
   return (
     <View style={styles.container}>
       <LinearGradient
@@ -11,7 +11,7 @@ export default function GradientBackground({ children, style }: any) {
         start={{ x: 0, y: 2 }}
         end={{ x: 2, y: 1 }}
         style={[styles.gradientContainer]}>
-        <Screen style={[styles.content, style]}>
+        <Screen style={[styles.content, style]} hasHeader={hasHeader}>
           {children}
         </Screen>
       </LinearGradient>
