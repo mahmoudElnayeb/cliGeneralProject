@@ -38,6 +38,8 @@ export default function FormInput({
         style={styles.input}
         icon={icon}
         numberOfLines={numberOfLines}
+        
+
       />
       <ErrorMessage visible={touched[name]} error={errors[name]} />
     </View>

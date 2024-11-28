@@ -43,6 +43,9 @@ export default function InputText({
         onBlur={onBlur}
         numberOfLines={numberOfLines}
         style={styles.text}
+        multiline
+        autoCorrect
+        spellCheck
       />
     </View>
   );
