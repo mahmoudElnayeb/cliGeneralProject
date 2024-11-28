@@ -34,12 +34,14 @@ export default function LoginScreen({ navigation }: any) {
             name="email"
             keyboardType="email-address"
             placeholder="Email"
+            icon='email'
           />
           <FormInput
             name="password"
             keyboardType="default"
             secureTextEntry={true}
             placeholder="Password"
+            icon='lock'
           />
 
           <SubmitButton title="Login" type="primary" />

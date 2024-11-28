@@ -48,7 +48,7 @@ const renderData=()=>{
 
 
   return (
-    <GradientBackground style={styles.container} hasHeader>
+    <GradientBackground style={styles.container} >
       {(error && !loading) && (
         <View style={{ alignItems: "center" 
         , justifyContent:'center' , flex:1 }}>

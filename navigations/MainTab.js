@@ -38,7 +38,7 @@ const MainTabNavigator = () => {
         component={UserScreen}
         options={{
           tabBarIcon: ({size, color}) => (
-            <Icon icon="account" color={color} size={60} />
+            <Icon icon="cog" color={color} size={60} />
           ),
         }}
       />

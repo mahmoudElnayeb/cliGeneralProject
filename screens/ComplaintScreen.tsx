@@ -49,8 +49,8 @@ export default function ComplaintScreen() {
         validationSchema={ValidationSchema}
         onSubmit={handelSubmit}>
            <FormDropdown name='category' placeholder='Category' options={categoryOptions}/>
-          <FormInput name='title' placeholder='Title' icon='title' />
-          <FormInput name='message' placeholder='Enter Your Message' numberOfLines={8} icon='message'/>
+          <FormInput name='title' placeholder='Title' icon='message' />
+          <FormInput name='message' placeholder='Enter Your Message' numberOfLines={8} icon='text'/>
           <SubmitButton title='Submit'  type="primary"/>
 
       </Form>
