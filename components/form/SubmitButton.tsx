@@ -8,9 +8,11 @@ import {useEffect} from 'react';
 export default function SubmitButton({
   title,
   type = 'primary',
+  loading
 }: {
   title: string;
   type?: 'primary' | 'default' | 'secondary';
+  loading?: boolean
 }) {
   useEffect(() => {
     (() => validateForm())();
@@ -23,6 +25,7 @@ export default function SubmitButton({
       title={title}
       type={type}
       disabled={!isValid}
+      loading={loading}
     />
   );
 }

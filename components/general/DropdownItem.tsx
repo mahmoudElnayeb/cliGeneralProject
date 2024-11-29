@@ -1,5 +1,5 @@
 /* eslint-disable react/react-in-jsx-scope */
-import {Pressable, StyleSheet, View} from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import AppText from './AppText';
 import Icon from './Icon';
 

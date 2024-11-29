@@ -9,10 +9,10 @@ import FormDropdown from '../components/form/FormDropdown';
 import customStyle from '../config/styles';
 import SubmitButton from '../components/form/SubmitButton';
 import useApi from '../apis/useApi';
-import{sentCoplainApiMock} from '../services/compalin/complianApi.service';
+import { sentCoplainApi } from '../services/compalin/complianApi.service';
 export default function ComplaintScreen() {
 
-  const sendComplaintApi = useApi(sentCoplainApiMock);
+  const sendComplaintApi = useApi(sentCoplainApi);
 
   const initialValues = {
     category: null,
@@ -30,18 +30,28 @@ export default function ComplaintScreen() {
   const categoryOptions=[
     {
       id:1 , 
-      title:'Problem'
+      title:'Problem',
+      icon:'cog',
+      backgroundColor: customStyle.color.light,
+      color: customStyle.color.primary,
     },
     {
       id:2 , 
-      title:'Question'
+      title:'Question',
+      icon: 'alpha-g-box-outline',
+      backgroundColor: customStyle.color.light,
+      color: customStyle.color.primary,
     },
     {
       id:3 , 
-      title:'Suggetion'
+      title:'Suggetion',
+      icon: 'bell',
+      backgroundColor: customStyle.color.light,
+      color: customStyle.color.primary,
     },
   ]
   const handelSubmit = async (form:any)=>{
+
     const payload={
       category: form.category.title,
       title: form.title,
@@ -63,7 +73,7 @@ export default function ComplaintScreen() {
            <FormDropdown name='category' placeholder='Category' options={categoryOptions}/>
           <FormInput name='title' placeholder='Title' icon='message' />
           <FormInput name='message' placeholder='Enter Your Message' numberOfLines={8} icon='text'/>
-          <SubmitButton title='Submit'  type="primary"/>
+          <SubmitButton title='Submit'  type="primary" loading={sendComplaintApi.loading}/>
       </Form>
     </Screen>
   );

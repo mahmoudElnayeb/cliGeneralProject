@@ -9,7 +9,7 @@ import customStyle from '../config/styles';
 import FormDropdown from '../components/form/FormDropdown';
 import FormImageInput from '../components/form/FormImageInput';
 import GradientBackground from '../components/general/GradientBackground';
-import productApis from "../services/products/productsApi";
+import productApis from "../services/products/productsApi.service";
 import { IProductPayload } from "../modals/product.payload";
 import useApi from '../apis/useApi';
 import { useState } from 'react';
@@ -112,7 +112,7 @@ export default function AddProduct() {
           placeholder="Description"
         />
 
-        <SubmitButton title="Add" type="primary" />
+        <SubmitButton title="Add" type="primary" loading={loading} />
       </Form>
     </GradientBackground>
   );

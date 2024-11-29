@@ -6,14 +6,12 @@ import Card from '../components/general/Card';
 import Seperator from '../components/general/Seperator';
 import GradientBackground from '../components/general/GradientBackground';
 import useApi from '../apis/useApi';
-import productApis from '../services/products/productsApi';
+import productApis from '../services/products/productsApi.service';
 import AppText from '../components/general/AppText';
 import Button from '../components/general/Button';
 import ActivityIndicator from '../components/general/ActivityIndicator';
 import customDefaultStyle from '../config/styles'
-import useHeader from '../hooks/headerHook';
 export default function ProductList({ navigation }: any) {
-  useHeader()
   const { request: getProducts, data: productListData = [],
     loading,
     error,
@@ -64,7 +62,7 @@ const renderError=()=>{
 
 
   return (
-    <GradientBackground style={styles.container} hasHeader >
+    <GradientBackground style={styles.container}  >
       {(error && !loading) && renderError()}
 
       {loading ? (
@@ -79,7 +77,7 @@ const renderError=()=>{
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // paddingVertical: 20,
+    paddingVertical: 20,
     paddingHorizontal:customDefaultStyle.cardPadding.paddingHorizontal
   },
 });

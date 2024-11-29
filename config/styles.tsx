@@ -8,8 +8,9 @@ export default {
   buttonContainer: {
     width: '100%',
     borderRadius: 20,
-    paddingVertical: 15,
+    // paddingVertical: 15,
     marginVertical: 6,
+    height:60,
   },
   text: {
     color: colors.dark,

@@ -43,7 +43,7 @@ const useHeader = ({
           type="default"
           onPress={() => onBackPress || navigation.goBack()}
           icon='arrow-left'
-          style={{ width: 50, height: 50 ,}}
+          style={{ width: 50, height: 50 , alignItems: 'center', justifyContent: 'center' }}
           title={""}
           iconSize={50}
           

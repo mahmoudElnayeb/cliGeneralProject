@@ -1,6 +1,6 @@
 import { create } from 'apisauce';
 import config from '../environment';
-import { getMockResponse } from '../services/mockService';
+import { getMockResponse } from '../baseService/mockService';
 import { Alert } from 'react-native';
 
 const createClient = (URL) => {
@@ -62,20 +62,20 @@ const createClient = (URL) => {
     });
   });
 
-  // Add response transform to handle mocks
-  client.addResponseTransform(response => {
-    if (defaultConfig.enableMock && !response.ok) {
-      const mockResponse = getMockResponse(
-        response.config.url,
-        response.config.method,
-        response.config.data
-      );
-      if (mockResponse) {
-        response.data = mockResponse;
-        response.ok = true;
-      }
-    }
-  });
+  // // Add response transform to handle mocks
+  // client.addResponseTransform(response => {
+  //   if (defaultConfig.enableMock && !response?.ok) {
+  //     const mockResponse = getMockResponse(
+  //       response?.config?.url,
+  //       response?.config?.method,
+  //       response?.config?.data
+  //     );
+  //     if (mockResponse) {
+  //       response.data = mockResponse;
+  //       response.ok = true;
+  //     }
+  //   }
+  // });
 
   return client;
 };

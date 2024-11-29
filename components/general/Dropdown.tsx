@@ -1,6 +1,6 @@
 /* eslint-disable react/react-in-jsx-scope */
-import {FlatList, Modal, Pressable, StyleSheet} from 'react-native';
-import {useState} from 'react';
+import { FlatList, Modal, Pressable, StyleSheet } from 'react-native';
+import { useState } from 'react';
 import customStyle from '../../config/styles';
 import AppText from './AppText';
 import Icon from './Icon';
@@ -17,16 +17,16 @@ export default function Dropdown({
   selectedItem?: any;
   onSelectItem: (item: any) => void;
   options: Array<{
-    title: string;
-    id: number;
-    icon: string;
-    backgroundColor: string;
-    color: string;
+    title?: string;
+    id?: number;
+    icon?: string;
+    backgroundColor?: string;
+    color?: string;
   }>;
 }) {
   const [openModal, setOpenModal] = useState(false);
 
-  const handelSelectItem = item => {
+  const handelSelectItem = (item: any) => {
     setOpenModal(false);
     onSelectItem(item);
   };
@@ -36,7 +36,7 @@ export default function Dropdown({
       <Pressable style={styles.container} onPress={() => setOpenModal(true)}>
         <Icon icon="apps" color={customStyle.color.medium} />
         <AppText
-          style={[!selectedItem ? styles.placeholder : styles.item, {flex: 1}]}>
+          style={[!selectedItem ? styles.placeholder : styles.item, { flex: 1 }]}>
           {selectedItem ? selectedItem.title : placeholder}
         </AppText>
         <Icon icon="chevron-down" color={customStyle.color.medium} />
@@ -46,10 +46,10 @@ export default function Dropdown({
         <FlatList
           data={options}
           numColumns={3}
-          renderItem={({item}) => (
+          renderItem={({ item }) => (
             <DropdownItem item={item} onPress={() => handelSelectItem(item)} />
           )}
-          keyExtractor={item => item.id.toString()}
+          keyExtractor={item => item.id!.toString()}
           showsVerticalScrollIndicator={false}
         />
         <Button

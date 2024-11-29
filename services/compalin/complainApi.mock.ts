@@ -4,13 +4,12 @@
 const apiName = "compain"
 
 
-export const getComplains: Record<string, any> = {
-
-    'compain': {
+export const compainMockResponses: Record<string, any> = {
+    '/compain/send': {
         POST: () => new Promise((resolve) => {
             setTimeout(() => {
-                resolve({ ok: true, data: "Compain Sent" });
-            }, 1000);
+                resolve({ ok: false, data: "Compain Sent" });
+            }, 5000);
         })
     }
 }

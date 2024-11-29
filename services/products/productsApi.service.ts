@@ -1,5 +1,5 @@
 import { IProductPayload } from "../../modals/product.payload";
-import { call } from '../apiServices';
+import { call } from '../../baseService/apiServices';
 
 
 const endpoint = '/listings';
