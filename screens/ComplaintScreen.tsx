@@ -21,7 +21,7 @@ export default function ComplaintScreen() {
   }
 
   const validationSchema = Yup.object().shape({
-    category: Yup.object().required().nullable().label("Category"),
+    category: Yup.object().required().nonNullable("Please select a category").label("Category"),
     title: Yup.string().required().min(4).label("Title"),
     message: Yup.string().required().min(4).label("Message"),
   })

@@ -30,8 +30,10 @@ export default function FormDropdown({
           setFieldValue(name, item);
           setFieldTouched(name);
         }}
+     
         options={options}
         placeholder={placeholder}
+        style={ {borderColor: (errors[name]&& touched[name] )? 'red' : 'transparent'}}
       />
       <ErrorMessage error={errors[name]} visible={touched[name]} />
     </View>

@@ -29,7 +29,7 @@ export default function AddProduct() {
   const validationSchema = Yup.object().shape({
     name: Yup.string().required().min(3).label('Product Name'),
     price: Yup.number().min(0).required().label('Price'),
-    category: Yup.object().nullable().label('Category'),
+    category: Yup.object().nonNullable('Please select a category').label('Category'),
     images: Yup.array().min(0, 'Images must be one at least'),
     description: Yup.string().min(3).label('Product Description'),
   });

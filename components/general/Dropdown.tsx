@@ -12,6 +12,7 @@ export default function Dropdown({
   selectedItem,
   onSelectItem,
   options,
+  style
 }: {
   placeholder?: string;
   selectedItem?: any;
@@ -22,6 +23,7 @@ export default function Dropdown({
     icon?: string;
     backgroundColor?: string;
     color?: string;
+    style?: any;
   }>;
 }) {
   const [openModal, setOpenModal] = useState(false);
@@ -33,7 +35,7 @@ export default function Dropdown({
 
   return (
     <>
-      <Pressable style={styles.container} onPress={() => setOpenModal(true)}>
+      <Pressable style={[styles.container,style]} onPress={() => setOpenModal(true)} >
         <Icon icon="apps" color={customStyle.color.medium} />
         <AppText
           style={[!selectedItem ? styles.placeholder : styles.item, { flex: 1 }]}>
@@ -57,6 +59,7 @@ export default function Dropdown({
           title="Close"
           onPress={() => {
             setOpenModal(false);
+            onSelectItem(null);
           }}
         />
       </Modal>

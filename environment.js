@@ -2,7 +2,7 @@ const config = {
   development: {
     apiUrl: 'http://localhost:3000/api',
     timeout: 30000,
-    enableMock: true,
+    enableMock: false,
     authToken: '',
   },
   production: {

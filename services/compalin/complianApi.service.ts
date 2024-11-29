@@ -9,7 +9,7 @@ export const sentCoplainApi = async (body?: { category: any; title: any; message
     return await call({
         Method: "POST",
         endpointurl: `/${apiName}/send`,
-        useMock: true,
+        // useMock: true,
         body
         
     })

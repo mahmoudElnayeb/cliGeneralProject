@@ -10,7 +10,7 @@ const allProductsApi = () =>
   call({ 
    Method: "GET",
    endpointurl: endpoint,
-   useMock: true
+  //  useMock: true
   })
 
 const addProduct = (product: IProductPayload ) => call({ 
@@ -23,7 +23,7 @@ const addProduct = (product: IProductPayload ) => call({
     },
     onUploadProgress: (progress:any) => console.log(progress),
   },
-  useMock:false
+  // useMock:false
   
   });
 

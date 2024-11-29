@@ -35,7 +35,7 @@ export default function FormInput({
         placeholder={placeholder}
         secureTextEntry={secureTextEntry}
         width={width}
-        style={styles.input}
+        style={[styles.input , {borderColor: (errors[name]&& touched[name] )? 'red' : 'transparent'}]}
         icon={icon}
         numberOfLines={numberOfLines}
         

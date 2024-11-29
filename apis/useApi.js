@@ -36,20 +36,7 @@ export default useApi = (apiFunc) => {
     dispatch({ type: "SET_LOADING", loading: false })
 
     if (!response.ok) {
-      dispatch({ type: 'SET_ERROR_MESSAGE', errorMessage: response.data?.error || 'An error occurred' })
-
-      Alert.alert(
-        'Error',
-        response.data?.error || 'An error occurred',
-        [
-          {
-            text: 'OK',
-            onPress: () => console.log('OK Pressed'),
-          },
-        ],
-        { cancelable: false },
-      );
-      
+      dispatch({ type: 'SET_ERROR_MESSAGE', errorMessage: response.data?.error || 'An error occurred' })      
       return dispatch({ type: 'SET_ERROR', error: true });
     }
     dispatch({ type: 'SET_ERROR', error: false });
