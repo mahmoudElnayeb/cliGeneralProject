@@ -5,7 +5,11 @@ import defaultStyle from '../../config/styles';
 
 export default function Screen({ children, style , hasHeader }: any) {
   return (
-    <View style={[styles.container, style ,{paddingTop: hasHeader ? 130 : 0}]}>
+    <View style={[
+      styles.container,
+       style ,
+       {paddingTop: hasHeader ? defaultStyle.cardPadding.headerPadding : 0}
+       ]}>
       <SafeAreaView style={[styles.container, style]}>
         {children}
       </SafeAreaView>

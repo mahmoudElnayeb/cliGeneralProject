@@ -30,7 +30,7 @@ export default function AddProduct() {
     name: Yup.string().required().min(3).label('Product Name'),
     price: Yup.number().min(0).required().label('Price'),
     category: Yup.object().nullable().label('Category'),
-    images: Yup.array().min(1, 'Images must be one at least'),
+    images: Yup.array().min(0, 'Images must be one at least'),
     description: Yup.string().min(3).label('Product Description'),
   });
 
@@ -84,12 +84,9 @@ export default function AddProduct() {
   });
   }
 
-console.log("response------>",ProductsResponse);
-
 
   return (
-    <GradientBackground style={{...defaultStyle.cardPadding
-      , paddingTop: 30}} hasHeader>
+    <GradientBackground style={{paddingHorizontal: defaultStyle.cardPadding.paddingHorizontal , paddingTop: 30}} hasHeader>
       <Form
         validationSchema={validationSchema}
         initialValues={initialValues}

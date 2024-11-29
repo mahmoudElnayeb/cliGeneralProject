@@ -1,4 +1,5 @@
 import {  useReducer } from "react";
+import { Alert } from "react-native";
 
 const reducer = (state, actions) => {
   switch (actions.type) {
@@ -36,6 +37,19 @@ export default useApi = (apiFunc) => {
 
     if (!response.ok) {
       dispatch({ type: 'SET_ERROR_MESSAGE', errorMessage: response.data?.error || 'An error occurred' })
+
+      Alert.alert(
+        'Error',
+        response.data?.error || 'An error occurred',
+        [
+          {
+            text: 'OK',
+            onPress: () => console.log('OK Pressed'),
+          },
+        ],
+        { cancelable: false },
+      );
+      
       return dispatch({ type: 'SET_ERROR', error: true });
     }
     dispatch({ type: 'SET_ERROR', error: false });

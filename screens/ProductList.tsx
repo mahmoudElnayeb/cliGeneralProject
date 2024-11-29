@@ -10,10 +10,10 @@ import productApis from '../services/products/productsApi';
 import AppText from '../components/general/AppText';
 import Button from '../components/general/Button';
 import ActivityIndicator from '../components/general/ActivityIndicator';
+import customDefaultStyle from '../config/styles'
 import useHeader from '../hooks/headerHook';
-
 export default function ProductList({ navigation }: any) {
-  
+  useHeader()
   const { request: getProducts, data: productListData = [],
     loading,
     error,
@@ -47,21 +47,25 @@ const renderData=()=>{
 }
 
 
+const renderError=()=>{
   return (
-    <GradientBackground style={styles.container} >
-      {(error && !loading) && (
-        <View style={{ alignItems: "center" 
-        , justifyContent:'center' , flex:1 }}>
-          <AppText styles={{ margin: 20 }}>
-            We Have Issue in server currently
-          </AppText>
-          <Button
-            type="primary"
-            title="refetch"
-            onPress={() => getProducts()}
-          />
-        </View>
-      )}
+    <View style={{ alignItems: "center" }}>
+      <AppText style={{ fontSize: 20 }}>{errorMessage}</AppText>
+      <Button
+        onPress={() => getProducts()}
+        title="Retry"
+        type="primary"
+        style={{ marginTop: 20 }} />
+    </View>
+  )
+}
+
+
+
+
+  return (
+    <GradientBackground style={styles.container} hasHeader >
+      {(error && !loading) && renderError()}
 
       {loading ? (
         <ActivityIndicator visible={true} />
@@ -75,7 +79,7 @@ const renderData=()=>{
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingVertical: 20,
-    paddingHorizontal: 20
+    // paddingVertical: 20,
+    paddingHorizontal:customDefaultStyle.cardPadding.paddingHorizontal
   },
 });

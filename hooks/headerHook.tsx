@@ -1,7 +1,7 @@
 import { ReactNode, useLayoutEffect } from "react";
 import Button from '../components/general/Button';
 import { useNavigation, useRoute } from "@react-navigation/native";
-
+import customStyle from '../config/styles'
 interface CustomHeaderOptions {
   headerLeftFunc?: () => ReactNode;
   headerRightFunc?: () => ReactNode;
@@ -31,11 +31,11 @@ const useHeader = ({
         height: 130
       },
       headerLeftContainerStyle: {
-        paddingLeft: 10,
+        paddingLeft: 20,
 
       },
       headerRightContainerStyle: {
-        paddingRight: 10,
+        paddingRight:20,
 
       },
       headerLeft: () => headerLeftFunc?.() || (
@@ -43,9 +43,10 @@ const useHeader = ({
           type="default"
           onPress={() => onBackPress || navigation.goBack()}
           icon='arrow-left'
-          style={{ width: 50, height: 50 }}
+          style={{ width: 50, height: 50 ,}}
           title={""}
           iconSize={50}
+          
         />
       ),
       headerRight: () => headerRightFunc?.() || null

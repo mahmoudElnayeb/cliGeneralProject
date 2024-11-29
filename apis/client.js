@@ -1,13 +1,24 @@
 import { create } from 'apisauce';
-import { getConfig } from '../environment';
+import config from '../environment';
 import { getMockResponse } from '../services/mockService';
 
 const createClient = (URL) => {
-  const config = getConfig();
+  const defaultConfig = config.development; // Use development config by default
   const client = create({
-    baseURL: URL || config.apiUrl,
-    timeout: config.timeout,
+    baseURL: URL || defaultConfig.apiUrl,
+    timeout: defaultConfig.timeout,
   });
+
+  // api interceptors
+  client.axiosInstance.interceptors.response.use(
+    (response) => {
+      console.log("response========>", response);
+      return response;
+    },
+    (error) => {
+      return Promise.reject(error);
+    }
+  );
 
   // Monitor all requests
   client.addMonitor((response) => {
@@ -15,7 +26,6 @@ const createClient = (URL) => {
       url: response.config.url,
       method: response.config.method,
       data: response.config.data,
-      status: response.status,
       serviceUrl: response.config.serviceUrl,
       response: response
     });
@@ -23,7 +33,8 @@ const createClient = (URL) => {
 
   // Add request transform to log request data
   client.addRequestTransform(request => {
-    console.log('REQUEST:', {
+    request.headers['Authorization'] = defaultConfig.authToken;
+    console.log('Request:', {
       url: request.url,
       method: request.method,
       data: request.data,
@@ -34,14 +45,15 @@ const createClient = (URL) => {
 
   // Add response transform to handle mocks
   client.addResponseTransform(response => {
-    if (config.enableMock && !response.ok) {
+    if (defaultConfig.enableMock && !response.ok) {
       const mockResponse = getMockResponse(
         response.config.url,
         response.config.method,
         response.config.data
       );
       if (mockResponse) {
-        Object.assign(response, mockResponse);
+        response.data = mockResponse;
+        response.ok = true;
       }
     }
   });

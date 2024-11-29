@@ -8,7 +8,11 @@ import FormInput from '../components/form/FormInput';
 import FormDropdown from '../components/form/FormDropdown';
 import customStyle from '../config/styles';
 import SubmitButton from '../components/form/SubmitButton';
+import useApi from '../apis/useApi';
+import{sentCoplainApiMock} from '../services/compalin/complianApi.service';
 export default function ComplaintScreen() {
+
+  const sendComplaintApi = useApi(sentCoplainApiMock);
 
   const initialValues = {
     category: null,
@@ -16,29 +20,37 @@ export default function ComplaintScreen() {
     message:''
   }
 
-  const ValidationSchema= Yup.object().shape({
-    category: Yup.object().nullable().required('Category is required'),
-    title: Yup.string().required('Title is required'),
-    message: Yup.string().required('Message is required'),
+  const validationSchema = Yup.object().shape({
+    category: Yup.object().required().nullable().label("Category"),
+    title: Yup.string().required().min(4).label("Title"),
+    message: Yup.string().required().min(4).label("Message"),
   })
 
 
   const categoryOptions=[
     {
       id:1 , 
-      title:'Issue'
+      title:'Problem'
     },
     {
       id:2 , 
-      title:'Complaient'
+      title:'Question'
     },
     {
       id:3 , 
       title:'Suggetion'
     },
   ]
-  const handelSubmit= (form:any)=>{
-    
+  const handelSubmit = async (form:any)=>{
+    const payload={
+      category: form.category.title,
+      title: form.title,
+      message: form.message
+    }
+    await sendComplaintApi.request(payload);
+    // if (!sendComplaintApi.error) {
+    //   console.log("Complaint sent successfully", sendComplaintApi.data);
+    // }
   }
 
   return (
@@ -46,13 +58,12 @@ export default function ComplaintScreen() {
       <AppText style={{marginTop: 50 , marginBottom:30 , color: customStyle.color.primary , fontSize:20 , fontWeight:'bold'}}> Write Your Compalient </AppText>
       <Form 
         initialValues={initialValues}
-        validationSchema={ValidationSchema}
+        validationSchema={validationSchema}
         onSubmit={handelSubmit}>
            <FormDropdown name='category' placeholder='Category' options={categoryOptions}/>
           <FormInput name='title' placeholder='Title' icon='message' />
           <FormInput name='message' placeholder='Enter Your Message' numberOfLines={8} icon='text'/>
           <SubmitButton title='Submit'  type="primary"/>
-
       </Form>
     </Screen>
   );

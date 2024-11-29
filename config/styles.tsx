@@ -35,7 +35,8 @@ export default {
     flexDirection: 'row',
   },
   cardPadding:{
-    paddingHorizontal: Platform.OS === 'android' ? 10 : 20
+    paddingHorizontal: Platform.OS === 'android' ? 10 : 20,
+    headerPadding: Platform.OS === 'android' ? 100 : 130
    }
   
   

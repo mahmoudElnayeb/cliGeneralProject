@@ -1,11 +1,11 @@
-import client from '../../apis/client';
 import { IProductPayload } from "../../modals/product.payload";
 import { call } from '../apiServices';
-import { getMockResponse } from '../mockService';
-
 
 
 const endpoint = '/listings';
+
+
+
 const allProductsApi = () => 
   call({ 
    Method: "GET",
@@ -23,7 +23,7 @@ const addProduct = (product: IProductPayload ) => call({
     },
     onUploadProgress: (progress:any) => console.log(progress),
   },
-  useMock:true
+  useMock:false
   
   });
 
