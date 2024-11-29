@@ -1,6 +1,7 @@
 import { create } from 'apisauce';
 import config from '../environment';
 import { getMockResponse } from '../services/mockService';
+import { Alert } from 'react-native';
 
 const createClient = (URL) => {
   const defaultConfig = config.development; // Use development config by default
@@ -16,6 +17,13 @@ const createClient = (URL) => {
       return response;
     },
     (error) => {
+      // Handle network errors
+      Alert.alert(
+        'Error',
+        error.message || 'Network error occurred',
+        [{ text: 'OK' }],
+        { cancelable: false }
+      );
       return Promise.reject(error);
     }
   );
@@ -29,6 +37,17 @@ const createClient = (URL) => {
       serviceUrl: response.config.serviceUrl,
       response: response
     });
+
+    // Handle any non-ok response with an alert
+    if (!response.ok) {
+      const errorMessage = response.data?.error || response.data?.message || 'Error Happend try in a while';
+      Alert.alert(
+        'Error Happend', 
+        errorMessage,
+        [{ text: 'OK' }],
+        { cancelable: false }
+      );
+    }
   });
 
   // Add request transform to log request data
