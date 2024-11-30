@@ -13,7 +13,7 @@ const allProductsApi = () =>
   //  useMock: true
   })
 
-const addProduct = (product: IProductPayload ) => call({ 
+const addProduct = (product: IProductPayload ,onUploadProgress:(percentage: number)=>any) => call({ 
    Method: "POST",
    endpointurl:endpoint,
    body: product,
@@ -21,7 +21,7 @@ const addProduct = (product: IProductPayload ) => call({
     headers: {
       'Content-Type': 'multipart/form-data',
     },
-    onUploadProgress: (progress:any) => console.log(progress),
+    onUploadProgress: (progress:any) => onUploadProgress(progress.loaded / progress.total),
   },
   // useMock:false
   

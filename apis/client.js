@@ -13,7 +13,7 @@ const createClient = (URL) => {
   // api interceptors
   client.axiosInstance.interceptors.response.use(
     (response) => {
-      console.log("response========>", response);
+      // console.log("response========>", response);
       return response;
     },
     (error) => {
@@ -30,13 +30,13 @@ const createClient = (URL) => {
 
   // Monitor all requests
   client.addMonitor((response) => {
-    console.log('API CALL:', {
-      url: response.config.url,
-      method: response.config.method,
-      data: response.config.data,
-      serviceUrl: response.config.serviceUrl,
-      response: response
-    });
+    // console.log('API CALL:', {
+    //   url: response.config.url,
+    //   method: response.config.method,
+    //   data: response.config.data,
+    //   serviceUrl: response.config.serviceUrl,
+    //   response: response
+    // });
 
     // Handle any non-ok response with an alert
     if (!response.ok) {
@@ -53,13 +53,13 @@ const createClient = (URL) => {
   // Add request transform to log request data
   client.addRequestTransform(request => {
     request.headers['Authorization'] = defaultConfig.authToken;
-    console.log('Request:', {
-      url: request.url,
-      method: request.method,
-      data: request.data,
-      headers: request.headers,
-      serviceUrl: client.getBaseURL(),
-    });
+    // console.log('Request:', {
+    //   url: request.url,
+    //   method: request.method,
+    //   data: request.data,
+    //   headers: request.headers,
+    //   serviceUrl: client.getBaseURL(),
+    // });
   });
 
   // // Add response transform to handle mocks

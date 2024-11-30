@@ -8,7 +8,7 @@ import FormInput from '../components/form/FormInput';
 import FormDropdown from '../components/form/FormDropdown';
 import customStyle from '../config/styles';
 import SubmitButton from '../components/form/SubmitButton';
-import useApi from '../apis/useApi';
+import useApi from '../hooks/useApi';
 import { sentCoplainApi } from '../services/compalin/complianApi.service';
 export default function ComplaintScreen() {
 

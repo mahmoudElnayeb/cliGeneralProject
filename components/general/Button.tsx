@@ -30,7 +30,7 @@ export default function Button({
 
   return (
     <Pressable
-      onPress={onPress}
+      onPress={loading?null:onPress}
       disabled={disabled}
       onHoverIn={() => setIsHovered(true)}
       onHoverOut={() => setIsHovered(false)}

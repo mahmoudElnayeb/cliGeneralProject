@@ -11,10 +11,10 @@ import FormImageInput from '../components/form/FormImageInput';
 import GradientBackground from '../components/general/GradientBackground';
 import productApis from "../services/products/productsApi.service";
 import { IProductPayload } from "../modals/product.payload";
-import useApi from '../apis/useApi';
+import useApi from '../hooks/useApi';
 import { useState } from 'react';
 import defaultStyle from '../config/styles'
-import useHeader from '../hooks/headerHook';
+import useHeader from '../hooks/useHeader';
 
 export default function AddProduct() {
    useHeader()
@@ -80,6 +80,8 @@ export default function AddProduct() {
     );
     
      await  addProductFunc(productPayload as IProductPayload , (progress:any)=>{
+      console.log('progesss----->' , progress);
+      
       setProgress(progress);
   });
   }

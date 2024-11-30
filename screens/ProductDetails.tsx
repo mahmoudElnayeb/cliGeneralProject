@@ -4,7 +4,7 @@ import customStyle from '../config/styles';
 import AppText from '../components/general/AppText';
 import Button from '../components/general/Button';
 import GradientBackground from '../components/general/GradientBackground';
-import useHeader from '../hooks/headerHook';
+import useHeader from '../hooks/useHeader';
 export default function ProductDetails({route, navigation}: any) {
   useHeader({headerRightFunc:()=>( (
            

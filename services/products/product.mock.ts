@@ -11,7 +11,7 @@ const mockProducts: IProductPayload[] = [
     },
     {
       id: '2',
-      title: 'Mock Product 2',
+      title: 'Mock Productfhohpopojsdoajsdiahsdoaspdjopasa 2',
       price: 100,
       description: 'This is a mock product',
       categoryId: '',

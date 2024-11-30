@@ -28,7 +28,16 @@ const useHeader = ({
       headerStyle: {
         justifyContent: 'center',
         alignItems: 'center',
-        height: 130
+        height: 130,
+      },
+      headerTitleStyle: {
+        fontSize: 18,
+        fontWeight: '600',
+        width:'100%', 
+        overflow: 'hidden',
+        textAlign: 'center', 
+
+        paddingHorizontal: 30
       },
       headerLeftContainerStyle: {
         paddingLeft: 20,
@@ -36,7 +45,9 @@ const useHeader = ({
       },
       headerRightContainerStyle: {
         paddingRight:20,
-
+      },
+      titleStyle: {
+ 
       },
       headerLeft: () => headerLeftFunc?.() || (
         <Button

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Card from '../components/general/Card';
 import Seperator from '../components/general/Seperator';
 import GradientBackground from '../components/general/GradientBackground';
-import useApi from '../apis/useApi';
+import useApi from '../hooks/useApi';
 import productApis from '../services/products/productsApi.service';
 import AppText from '../components/general/AppText';
 import Button from '../components/general/Button';
@@ -62,9 +62,9 @@ export default function ProductList({ navigation }: any) {
         onRefresh={() => {
           getProducts();
         }}
-        windowSize={1}
-        initialNumToRender={1}
-        maxToRenderPerBatch={1}
+        windowSize={5}
+        initialNumToRender={3}
+        maxToRenderPerBatch={3}
         updateCellsBatchingPeriod={50}
       />
   }
