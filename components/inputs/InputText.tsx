@@ -15,6 +15,7 @@ export default function InputText({
   style,
   icon,
   numberOfLines,
+  multiline
 }: {
   placeholder?: string;
   icon?: string;
@@ -26,6 +27,7 @@ export default function InputText({
   keyboardType?: 'email-address' | 'default' | 'numeric';
   secureTextEntry?: boolean;
   style: any;
+  multiline?: boolean
 }) {
   return (
     <View style={[styles.inputContainer, {width}, style]}>
@@ -43,9 +45,9 @@ export default function InputText({
         onBlur={onBlur}
         numberOfLines={numberOfLines}
         style={styles.text}
-        multiline
         autoCorrect
         spellCheck
+        multiline={multiline}
       />
     </View>
   );

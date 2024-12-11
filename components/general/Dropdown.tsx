@@ -12,7 +12,7 @@ export default function Dropdown({
   selectedItem,
   onSelectItem,
   options,
-  style
+  style={}
 }: {
   placeholder?: string;
   selectedItem?: any;
@@ -23,7 +23,7 @@ export default function Dropdown({
     icon?: string;
     backgroundColor?: string;
     color?: string;
-    style?: any;
+    style?: {};
   }>;
 }) {
   const [openModal, setOpenModal] = useState(false);
@@ -59,7 +59,7 @@ export default function Dropdown({
           title="Close"
           onPress={() => {
             setOpenModal(false);
-            onSelectItem(null);
+            onSelectItem(undefined);
           }}
         />
       </Modal>

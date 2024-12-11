@@ -1,6 +1,6 @@
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable react/react-in-jsx-scope */
-import { Image, StyleSheet, View } from 'react-native';
+import { Image, KeyboardAvoidingView, Platform, StyleSheet, View } from 'react-native';
 import Screen from '../components/general/Screen';
 import Form from '../components/form/Form';
 import * as Yup from 'yup';
@@ -22,7 +22,8 @@ export default function LoginScreen({ navigation }: any) {
         source={require('../assets/images/logo-red.png')}
         style={styles.logo}
       />
-      <View style={styles.formContainer}>
+      <View style={styles.formContainer}> 
+      
         <Form
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -63,6 +64,6 @@ const styles = StyleSheet.create({
   formContainer: {
     marginTop: 50,
     paddingHorizontal: 20,
-    width: "100%"
+    width: "100%",
   },
 });

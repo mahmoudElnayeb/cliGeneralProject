@@ -20,7 +20,7 @@ export default function ImageInputList({
       horizontal
       ref={imageRef}
       showsHorizontalScrollIndicator={false}
-      onContentSizeChange={() => (imageRef as any).current.scrollToEnd()}>
+      onContentSizeChange={() => (imageRef as any).current.scrollToEnd({animated: true})}>
       {uris?.map((uri, index) => (
         <ImageInput
           key={index}

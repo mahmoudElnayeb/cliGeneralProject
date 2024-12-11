@@ -4,6 +4,7 @@ import { getMockResponse } from '../baseService/mockService';
 import { Alert } from 'react-native';
 
 const createClient = (URL) => {
+  const [networkError , setNetworkError]= useState(false)
   const defaultConfig = config.development; // Use development config by default
   const client = create({
     baseURL: URL || defaultConfig.apiUrl,
@@ -18,6 +19,7 @@ const createClient = (URL) => {
     },
     (error) => {
       // Handle network errors
+      setNetworkError(true);
       Alert.alert(
         'Error',
         error.message || 'Network error occurred',
@@ -39,7 +41,7 @@ const createClient = (URL) => {
     // });
 
     // Handle any non-ok response with an alert
-    if (!response.ok) {
+    if (!response.ok && !networkError) {
       const errorMessage = response.data?.error || response.data?.message || 'Error Happend try in a while';
       Alert.alert(
         'Error Happend', 

@@ -1,5 +1,5 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import {KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View} from 'react-native';
+import React, { useEffect, useLayoutEffect, useRef } from 'react';
 import Screen from '../components/general/Screen';
 import AppText from '../components/general/AppText';
 import Form from '../components/form/Form';
@@ -17,7 +17,8 @@ export default function ComplaintScreen() {
   const initialValues = {
     category: null,
     title:'',
-    message:''
+    message:'',
+ 
   }
 
   const validationSchema = Yup.object().shape({
@@ -64,8 +65,9 @@ export default function ComplaintScreen() {
   }
 
   return (
-    <Screen style={{paddingHorizontal: customStyle.cardPadding.paddingHorizontal}}>
+    <Screen style={{paddingHorizontal: customStyle.cardPadding.paddingHorizontal , paddingTop:270}}>
       <AppText style={{marginTop: 50 , marginBottom:30 , color: customStyle.color.primary , fontSize:20 , fontWeight:'bold'}}> Write Your Compalient </AppText>
+      <ScrollView  showsVerticalScrollIndicator={false}>
       <Form 
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -75,6 +77,7 @@ export default function ComplaintScreen() {
           <FormInput name='message' placeholder='Enter Your Message' numberOfLines={8} icon='text'/>
           <SubmitButton title='Submit'  type="primary" loading={sendComplaintApi.loading}/>
       </Form>
+      </ScrollView>
     </Screen>
   );
 }

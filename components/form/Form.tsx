@@ -6,10 +6,12 @@ export default function Form({
   children,
   initialValues,
   onSubmit,
+  onReset,
   validationSchema,
 }: {
   initialValues: any;
   onSubmit: (value: any) => any;
+  onReset?: () => any;
   validationSchema: any;
   children: any;
 }) {
@@ -17,6 +19,7 @@ export default function Form({
     <Formik
       initialValues={initialValues}
       onSubmit={onSubmit}
+      onReset={onReset}
       validationSchema={validationSchema}>
       {() => <View style={styles.container}>{children}</View>}
     </Formik>

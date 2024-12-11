@@ -1,25 +1,35 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { SafeAreaView, StyleSheet, View } from 'react-native';
-import React from 'react';
+import { KeyboardAvoidingView, Platform, SafeAreaView, StyleSheet, View } from 'react-native';
+import React, { useEffect, useRef } from 'react';
 import defaultStyle from '../../config/styles';
 
-export default function Screen({ children, style , hasHeader }: any) {
+export default function Screen({ children, style, hasHeader = false }: any) {
   return (
-    <View style={[
-      styles.container,
-       style ,
-       {paddingTop: hasHeader ? defaultStyle.cardPadding.headerPadding : 0}
-       ]}>
-      <SafeAreaView style={[styles.container, style]}>
-        {children}
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={[styles.screen]}
+      // keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
+    >
+      <SafeAreaView style={[styles.container, style]}> 
+        <View style={[
+          styles.container,
+          style,
+          {paddingTop: hasHeader ? defaultStyle.cardPadding.headerPadding : 0}
+        ]}>
+          {children}
+        </View>
       </SafeAreaView>
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 
 const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+    backgroundColor: defaultStyle.color.white,
+  },
   container: {
     flex: 1,
     width: '100%',
-  }
+  },
 });

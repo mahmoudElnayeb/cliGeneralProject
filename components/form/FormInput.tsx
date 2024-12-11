@@ -13,6 +13,7 @@ export default function FormInput({
   secureTextEntry = false,
   icon,
   numberOfLines,
+  multiline
 }: {
   name: string;
   placeholder?: string;
@@ -22,6 +23,7 @@ export default function FormInput({
   secureTextEntry?: boolean;
   icon?: string;
   numberOfLines?: number;
+  multiline?: boolean
 }) {
   const {values, errors, setFieldTouched, touched, setFieldValue}: any =
     useFormikContext();
@@ -38,6 +40,7 @@ export default function FormInput({
         style={[styles.input , {borderColor: (errors[name]&& touched[name] )? 'red' : 'transparent'}]}
         icon={icon}
         numberOfLines={numberOfLines}
+        multiline={multiline}
         
 
       />

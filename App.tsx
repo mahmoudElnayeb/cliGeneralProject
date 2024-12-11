@@ -20,9 +20,9 @@ function App(): React.JSX.Element {
   return (
     <GestureHandlerRootView style={{flex: 1}}>
       <SafeAreaProvider>
-        <KeyboardAvoidingView
+        {/* <KeyboardAvoidingView
           style={{flex: 1}}
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}> */}
           <NavigationContainer theme={NavigationTheme}>
             <Stack.Navigator screenOptions={{headerShown: false}}>
               <Stack.Screen name="welcome" component={HomeNav} />
@@ -37,7 +37,7 @@ function App(): React.JSX.Element {
               <Stack.Screen name="main" component={MainTabNavigator} />
             </Stack.Navigator>
           </NavigationContainer>
-        </KeyboardAvoidingView>
+        {/* </KeyboardAvoidingView> */}
       </SafeAreaProvider>
     </GestureHandlerRootView>
   );

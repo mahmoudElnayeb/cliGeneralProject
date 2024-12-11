@@ -24,7 +24,7 @@ const mockProducts: IProductPayload[] = [
       GET: () => new Promise((resolve) => {
         setTimeout(() => {
           resolve({ ok: true, data: mockProducts });
-        }, 1000);
+        }, 3000);
       }),
       POST: () => new Promise((resolve) => {
         setTimeout(() => {

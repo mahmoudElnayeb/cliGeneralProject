@@ -20,7 +20,7 @@ export default function FormDropdown({
     color?: string;
   }>;
 }) {
-  const { values, touched, errors, setFieldValue, setFieldTouched } =
+  const { values, touched, errors, setFieldValue, setFieldTouched }:any=
     useFormikContext();
   return (
     <View>
